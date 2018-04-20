@@ -1,0 +1,81 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+<table align="center" >
+<form>
+    <div align="center">
+        <div class="form-group">   
+                <h2>Converter CSV</h2>
+                <br>
+                        <input type="file"
+                                #fileImportInput
+                                name="File Upload"
+                                id="txtFileUpload" 
+                                class="form-control"
+                                accept=".csv"
+                                value={{selectedImageFile}}/>
+                <br><br>
+                <p>Digite o delimitador: </p>
+                        <input type="text" 
+                                #delimit
+                                id="delimit" 
+                                name="delimit" 
+                                [(ngModel)]="delimitador"
+                                class="form-control" 
+                                (change)="switchDelimiter()">
+                <br><br>
+                <div align="center">
+                        <input type="button" 
+                                name="Reset" 
+                                id="txtFileReset" 
+                                class="btn btn-primary"
+                                (click)="fileReset()" 
+                                value="Reset"/>
+                        <br><br>
+                        <div align="center">
+                            <button type="submit" 
+                                    class="btn btn-primary"
+                                    value="Gerar JSON">Gerar JSON
+                            </button>
+                        </div>
+                </div> 
+        </div>            
+
+    </div>
+</form>
+</table>
+<div align="center"><br><br>
+    <table class="table table-condensed" 
+           border="1" 
+           align="center"
+           style="font-size: 17px ">
+        <tbody>
+            <ng-container *ngFor="let csvRec of csvRecords;let j=index">
+                <!-- <tr>
+                    <ng-container *ngFor="let data of csvRec;let j=index"> 
+                        <td>{{data}}</td>
+                    </ng-container> 
+                </tr> -->
+                <tr>    
+                    <td align="center">{{csvRec}}</td> 
+                     <td align="center">  
+                        <select [(ngModel)]="csvRec[index]"   style="width: 200px" 
+                                class="form-control form-control-sm"
+                                (change)="onChange($event)">
+                            <option *ngFor="let o of options">
+                                {{o.name}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </ng-container>
+
+            
+        </tbody>
+    </table>
+    <br><br>
+</div>
+
+
+
+                 
+
+
